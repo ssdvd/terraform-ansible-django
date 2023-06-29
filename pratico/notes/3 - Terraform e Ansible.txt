@@ -2,3 +2,48 @@ Criando arquivos com o Terraform:
 
 dentro do main.tf e no bloco resource, podemos definir o valor
 user_data = <<-EOF EOF para podermos executar comando via bash 
+e criarmos os arquivos necessarios para essa aula, tambem podemos 
+utilizar para executar alguns comandos caso sejam importantes para
+o funcionamento da VM.
+
+Conhecendo o Ansible:
+
+Ansible é uma ferramenta de TI de código aberto para gerenciar, automatizar,
+configurar servidores e, implantar aplicativos, a partir de uma
+localização central. Ele inclui sua própria linguagem declarativa 
+para descrever a configuração do sistema.
+
+Com ela podemos criar tarefas que podem ser alteradas sem prejudicar
+a infra existente, sem ter que destruir a instancia para subir uma nova
+com os dados alterados.
+
+para utilizarmos temos que criar dois arquivos, um com o nome host.yml
+e outro com o nome de playbook.yml.
+
+no arquivo host.yml, colocamos o seguinte:
+
+[terraform-ansible] - nome dado ao host
+44.208.33.185 - ip de destino
+
+ja no arquivo playbook.yml, colocamos o seguinte:
+
+- hosts: terraform-ansible                              | aqui e o nome do host
+  tasks:                                                | tarefa
+  - name: criando o arquivo                             | nome da tarefa 
+    copy:                                               | descricao da terefa
+      dest: /home/ubuntu/index.html                     | local e arquivo criado
+      content: <h1>Feito com terraform e ansible</h1>   | conteudo do arquivo
+  - name: criando servidor                              | nome da tarefa
+    shell: "nohup busybox httpd -f -p 8080 &"           | comando para executar via bash
+
+
+com esses dois arquivos montados e com a instancia ja online, podemos
+utilizar o comando 
+
+ansible-playbook playbook.yml -u ubuntu --private-key IaC-ssdvd.pem -i host.yml
+
+esse comando vai pegar o arquivo playbook vai logar com a nossa
+chave privada nos hosts indicado no arquivo host.yml, com isso 
+as tarefas serao executadas, facilitando as alteracoes sem a necessidade
+de destruir e subir outra instancia.
+
