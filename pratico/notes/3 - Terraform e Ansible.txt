@@ -1,0 +1,4 @@
+Criando arquivos com o Terraform:
+
+dentro do main.tf e no bloco resource, podemos definir o valor
+user_data = <<-EOF EOF para podermos executar comando via bash 

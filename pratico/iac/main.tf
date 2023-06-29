@@ -22,12 +22,13 @@ resource "aws_instance" "app_server" {
     instance_type   = "t2.micro"
     #definindo o par de chave
     key_name = "IaC-ssdvd"
-    user_data = <<-EOF
+    #Criando um arquivo para visualizacao web e servico nohup busybox
+    /* user_data = <<-EOF
                    #!/bin/bash
                    cd /home/ubuntu
                    echo "<h1>Feito com o Terraform</h1>" > index.html
                    nohup busybox httpd -f -p 8080 &
-                   EOF
+                   EOF */
     tags = {
         name = "Teste AWS"
     }
