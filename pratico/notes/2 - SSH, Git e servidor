@@ -1,0 +1,45 @@
+Alterando o terraform{}:
+
+quando modificamos o main.tf não precisamos enviar o comando
+terraform init, pois ele é quem é responsavel por carregar
+os plugins necessarios para o provedor selecionado. Só 
+enviamos o comando novamente se alterarmos o bloco 
+terraform{}, pois ai o terraform precisa atualizar os plugins
+necessarios.
+
+Conectando via SSH:
+
+com o terraform e a infra ja provisionada podemos agora
+configurar o security group para conseguirmos acessar
+via ssh, onde devemos criar uma regra de entrada e saida
+permitindo todo o trafego e acesso por qualquer ipv4.
+
+O recomendado é criar uma regra onde somente a porta do 
+SSH esteja aberta e uma regra de saida com a mesma porta.
+
+Mas como estou acompanhando pelo curso, irei fazer da mesma
+forma.
+
+Iniciando um mini servidor web:
+
+Como estamos conectado na instancia agora, podemos criar um arquivo
+index.html com um hello word dentro dele com a tag h1
+
+e podemos enviar os comandos via bash
+
+Esse comando serve para criarmos o arquivo index.html e inserir
+o texto hello word dentro.
+
+echo "<h1>Hello word</h1>" > index.html
+
+com o comando cat podemos validar a ação
+
+cat index.html
+
+e para subirmos o "servidor web" podemos utilizar o comando
+
+nohup busybox httpd -f -p 8080 &
+
+assim ele inicia o serviço da porta 8080 e ainda mantem executando
+apos desconectarmos da conexão SSH
+

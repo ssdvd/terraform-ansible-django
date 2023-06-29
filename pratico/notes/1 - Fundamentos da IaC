@@ -1,0 +1,38 @@
+o que é IaC?:
+
+é definir, implantar, atualizar e gerenciar uma
+infraestrutura
+
+Então podemos dizer que podemos definir o ambiente, fazer o
+deploy, atualizar e gerenciar utilizando infra como code
+
+Principais ferramentas de IaC:
+
+Terraform
+Ansible
+Crossplane
+CHEF
+Puppet
+kubernetes
+
+Podemos usar um script bash feito em Python ou RUby, para
+gerenciar uma infraestrutura? 
+
+Podemos porém não é aconselhável a longo prazo, devido o 
+ambiente, convenção de código, atualização do provedor de
+nuvem e a idempotência.
+
+Pensando nisso, a primeira ferramenta que podemos utilizar
+é o Terraform.
+
+Com eles iremos escrever um script de configuração com uma
+linguagem simples e o Terraform irá interpretar e irá fazer
+a "magica" que fazer com que a infra seja provisionada em
+diversos provedores(AWS, AZURE, GOOGLE CLOUD).
+
+Benefícios da IaC
+
+Deploy automatizado
+Controle de versão
+Velocidade e segurança
+Reuso
