@@ -46,4 +46,3 @@ esse comando vai pegar o arquivo playbook vai logar com a nossa
 chave privada nos hosts indicado no arquivo host.yml, com isso 
 as tarefas serao executadas, facilitando as alteracoes sem a necessidade
 de destruir e subir outra instancia.
-

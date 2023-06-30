@@ -1,0 +1,66 @@
+Ansible e Python:
+
+ainda no ansible, podemos instalar um ambiente para um dev, utilizando
+os comandos
+
+  - name: Instalando o pyhton3, virtualenv
+    apt:
+      pkg:
+      - python3
+      - virtualenv
+      update_cache: yes
+    become: yes
+
+Nessa terefa, podemos observar que iremos instalar o python3 e o virtualenv
+utilizando o apt, pkg e os pacotes que desejamos, o update_cache serve 
+para manter o repo mais recentes dos pkg como se fosse o 
+apt update e o become: yes, serve para sinalizar que iremos utilizar
+um super usuario para executar o comando, assim nao tendo problemas
+de permissoes.
+
+Instalando depencias:
+
+e para instalarmos as dependencias do python3, podemos executar a tarefa:
+
+  - name: Instalando dependencias com pip (django e django rest)
+    pip:
+      virtualenv: /home/ubuntu/tcc/venv
+      name:
+        - django
+        - djangorestframework
+
+Aqui podemos ver que iremos utilizar o comando pip para instalarmos as
+dependecias, e dentro dentro tbm ja iremos criar a venv junto com os 
+frameworks do python3 que sao o django e djangorestframework no caminho
+dado no virtualenv
+
+e assim que executarmos o playbook, teremos todo o ambiente ja configurando
+tendo que somente iniciar a venv para podermos comecar o nosso projeto
+
+Iniciando o projeto:
+
+E para iniciar nosso projeto de exemplo na instancia criada com o terraform
+no terminal e com a venv ja ativada, podemos rodar o comando:
+
+django-admin startproject setup .
+
+o comando esta dizendo para iniciar um projeto com o nome de setup na
+atual pasta. E para iniciar o servidor desse projeto usaremos o comando:
+
+python manage.py runserver 0.0.0.0:8000
+
+esse comando vai iniciar servidor usando o arquivo manage.py do projeto
+e liberara acesso para todos os ipv4 que acessessarem utilizando a porta
+8000. O 0.0.0.0 e o que determina o acesso para todos os ipv4 da internet
+e ai sera exibida a tela para permitir o acesso do ip no allowed_hosts
+
+Abrindo o projeto:
+
+e para poder permitir o acesso de todos os ipv4, devemos alterar um 
+arquivo que fica na propria pasto do projeto, que no caso e o setup
+e no arquivo settings.py temos a seguinte linha:
+
+ALLOWED_HOSTS = ['*']
+
+nessa linha, temos que adicionar '*' dentro dos conchetes para podermos
+permitir o acesso a nosso servidor do projeto setup de qualquer origem.
