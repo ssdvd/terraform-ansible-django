@@ -40,7 +40,7 @@ ja no arquivo playbook.yml, colocamos o seguinte:
 com esses dois arquivos montados e com a instancia ja online, podemos
 utilizar o comando 
 
-ansible-playbook playbook.yml -u ubuntu --private-key IaC-ssdvd.pem -i host.yml
+ansible-playbook playbook.yml -u ubuntu --private-key IaC-ssdvd.pem -i hosts.yml
 
 esse comando vai pegar o arquivo playbook vai logar com a nossa
 chave privada nos hosts indicado no arquivo host.yml, com isso 

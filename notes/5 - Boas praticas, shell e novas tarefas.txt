@@ -1,0 +1,31 @@
+Iniciando uma projeto pelo o ansible:
+
+dentro do playbook.yml criamos uma nova task, com o seguinte comando:
+
+  - name: Iniciando o projeto
+    shell: '. /home/ubuntu/tcc/venv/bin/activate; django-admin startproject setup /home/ubuntu/tcc/'
+
+onde vamos iniciar um shell para realizar a ativacao da venv e em seguida
+inicar um projeto com o nome setup.
+
+Configurando um arquivo com Ansible:
+
+uma nova tarefa sera criada dentro do arquivo playbook.yml, com o seguinte
+comando:
+
+  - name: Alterando o hosts do settings
+    lineinfile:
+      path: /home/ubuntu/tcc/setup/settings.py
+      regexp: 'ALLOWED_HOSTS'
+      line: 'ALLOWED_HOSTS = ["*"]'
+      backrefs: yes
+
+essa tarefa ir'a permitir requisicoes de qualquer origem para acessar a
+aplicacao django. Com o projeto ja criado essa tarefa vai procurar uma
+linha com o comando LINEINFILE, dentro desse comando vc ira passar o
+caminho com o PATH, e vai verificar se dentro desse arquivo com o comando
+REGEXP:, se vai haver as palavras ALLOWED_HOSTS e sobrescrever com 
+comando LINE: com as palavras 'ALLOWED_HOSTS = ["*"]', para realizar
+o permissionamento do acesso a aplicacao, e com o comando BACKREFS:yes
+caso nao encontrar o que foi descrito o comando nao ira fazer nenhuma
+modificacao.
